@@ -16,14 +16,14 @@
     <string name="inputError">This field can´t be empty!</string>
     <string name="successCreatingUser">Your account has been successfully created!</string>
     <string name="errorCreatingUserTitle">An error has ocurred :(</string>
-    <string name="errorCreatingUserDesc">We couldn´t create an account for you... Please try later.</string>
+    <string name="errorCreatingUserDesc">Seems like this account is already registered.</string>
     <string name="passwdNotSame">Passwords don´t match!</string>
     <string name="loadingTitle">Loading...</string>
     <string name="loadingMessage">We´re preparing everything for you :)</string>
     <string name="passwdSixChars">Password must be at least 6 characters</string>
     <string name="home">Welcome!</string>
     <string name="errorSigningInTitle">Sign in failed</string>
-    <string name="errorSigningInDesc">E-Mail or password is incorrect, please check later.</string>
+    <string name="errorSigningInDesc">E-Mail or password is incorrect, please check again.</string>
     <string name="logout">Log out</string>
     <string name="logoutTitle">Logout</string>
     <string name="logoutDesc">Are you sure of logging out?</string>

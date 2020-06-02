@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loading = loadingWindow(LoginActivity.this).show();
                 Log.v("SIGN IN", "Pressed button...");
                 if (email.getText().toString().isEmpty()) {
                     emailLayout.setError(getResources().getString(R.string.inputError));
@@ -70,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     passwdLayout.setError(getResources().getString(R.string.inputError));
                     return;
                 }
+                loading = loadingWindow(LoginActivity.this).show();
                 firebaseAuth.signInWithEmailAndPassword(email.getText().toString().toLowerCase().trim(), passwd.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
