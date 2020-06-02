@@ -83,4 +83,6 @@
     <string name="tipsDialogTitle">Tips</string>
     <string name="about">About this app</string>
     <string name="aboutMessage">App developed on Android studio by Bardia. The technologies used in this app are: Google Vision, Room Database, Firebase Realtime Database and TheArtOfDev`s image cropper.</string>
+    <string name="permissions_needed_message_camera">We need permissions to open the camera in order to take photos with it.</string>
+    <string name="permissions_needed_message_storage">We need storage permission in order to select images from gallery.</string>
 </resources>

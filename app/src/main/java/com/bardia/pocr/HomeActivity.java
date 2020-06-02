@@ -1,5 +1,6 @@
 package com.bardia.pocr;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -181,10 +183,50 @@ public class HomeActivity extends AppCompatActivity {
             case REQUEST_PERMISSIONS_CODE:
                 if (grantResults.length > 0) {
 
-                    boolean ReadContactsPermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean CameraPermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean WriteExternalStoragePermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
-                    if (ReadContactsPermission && WriteExternalStoragePermission) {
+                    if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                        // user rejected the permission
+                        boolean showRationale = shouldShowRequestPermissionRationale(CAMERA);
+                        if (!showRationale) {
+                            new AlertDialog.Builder(HomeActivity.this)
+                                    .setTitle(getResources().getString(R.string.permissions_needed_title))
+                                    .setMessage(getResources().getString(R.string.permissions_needed_message_camera))
+                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                            intent.setData(uri);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+
+                    if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                        // user rejected the permission
+                        boolean showRationale = shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE);
+                        if (!showRationale) {
+                            new AlertDialog.Builder(HomeActivity.this)
+                                    .setTitle(getResources().getString(R.string.permissions_needed_title))
+                                    .setMessage(getResources().getString(R.string.permissions_needed_message_storage))
+                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                            Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                            intent.setData(uri);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+
+                    if (CameraPermission && WriteExternalStoragePermission) {
                         Snackbar.make(parent, R.string.permissions_given, Snackbar.LENGTH_LONG).show();
                         optionsForScanning(HomeActivity.this).show();
                     }
