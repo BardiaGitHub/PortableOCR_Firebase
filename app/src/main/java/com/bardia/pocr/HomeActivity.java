@@ -206,7 +206,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
 
-                    if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    if (grantResults[1] == PackageManager.PERMISSION_DENIED) {
                         // user rejected the permission
                         boolean showRationale = shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE);
                         if (!showRationale) {
